@@ -43,8 +43,8 @@ def get_filehandle(filename, stdlib=False):
     e = None
     for cand in candidates:
         try:
-            return os.open(cand, os.O_RDONLY, 0777), os.path.abspath(cand)
-        except OSError, e:
-            pass
+            return os.open(cand, os.O_RDONLY, 0o777), os.path.abspath(cand)
+        except OSError as exc:
+            e = exc
     assert e is not None
     raise e
